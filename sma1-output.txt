@@ -1,0 +1,69 @@
+>t <- c("I","like","hot","dogs","a","lot","hot","dogs","forever")
+
+> replace_one_phrase(t,c("hot","dogs"))
+[1] "I"        "like"     "hot_dogs" "a"        "lot"      "hot_dogs" "forever" 
+
+> replace_one_phrase(c("a","xx","xx","xx","b"),c("xx","xx"))
+[1] "a"     "xx_xx" "xx"    "b"    
+
+> replace_phrases (c("ab","pq","xy"), list(c("ab","pq"),c("pq","xy")))
+[1] "ab_pq" "xy"   
+
+> test_text1 <- c(
++   "I","went","South","to","North","Dakota","then","South","to","South","Carolina")
+
+> test_text2 <- c(
++   "North","Dakota","is","North","of","South","Dakota","which","North","Dakota",
++   "is","North","of")
+
+> replace_one_phrase (test_text1,c("North","Dakota"))
+ [1] "I"            "went"         "South"        "to"           "North_Dakota"
+ [6] "then"         "South"        "to"           "South"        "Carolina"    
+
+> replace_one_phrase (test_text1,c("South","Carolina"))
+ [1] "I"              "went"           "South"          "to"            
+ [5] "North"          "Dakota"         "then"           "South"         
+ [9] "to"             "South_Carolina"
+
+> replace_one_phrase (test_text2,c("North","Dakota"))
+ [1] "North_Dakota" "is"           "North"        "of"           "South"       
+ [6] "Dakota"       "which"        "North_Dakota" "is"           "North"       
+[11] "of"          
+
+> phrases <- list(c("North","Dakota"),    c("South","Dakota"),
++                 c("North","Carolina"),  c("South","Carolina"),
++                 c("N ..." ... [TRUNCATED] 
+
+> replace_phrases (test_text1, phrases)
+[1] "I"              "went"           "South"          "to"            
+[5] "North_Dakota"   "then"           "South"          "to"            
+[9] "South_Carolina"
+
+> replace_phrases (test_text2, phrases)
+ [1] "North_Dakota" "is"           "North"        "of"           "South_Dakota"
+ [6] "which"        "North_Dakota" "is"           "North"        "of"          
+
+> m <- c("He","loves","to","play","games", "He","also","loves","to","play","games",
++        "with","friends")
+
+> gamephrase <- list(c("also","loves"),c("loves","to"),
++                    c("to","play"),c("play","games"))
+
+> replace_one_phrase(m,c("to","play"))
+ [1] "He"      "loves"   "to_play" "games"   "He"      "also"    "loves"   "to_play"
+ [9] "games"   "with"    "friends"
+
+> replace_phrases(m,gamephrase)
+[1] "He"         "loves_to"   "play_games" "He"         "also_loves" "to_play"   
+[7] "games"      "with"       "friends"   
+
+> Nanjo <- c("Nanjo", "Nanjo","Nanjo","nanjolo","nanjolo","nanjolo")
+
+> Nanjo.sets <- list(c("Nanjo","Nanjo"),c("Nanjo","nanjolo"),
++                   c("nanjolo","nanjolo"))
+
+> replace_phrases(Nanjo,Nanjo.sets)
+[1] "Nanjo_Nanjo"     "Nanjo_nanjolo"   "nanjolo_nanjolo"
+
+> replace_one_phrase(Nanjo,c("Nanjo","Nanjo"))
+[1] "Nanjo_Nanjo" "Nanjo"       "nanjolo"     "nanjolo"     "nanjolo"
